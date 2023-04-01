@@ -1,15 +1,15 @@
-// lint-staged.config.js
 module.exports = {
-    // Type check TypeScript files
+    // this will check Typescript files
     '**/*.(ts|tsx)': () => 'yarn tsc --noEmit',
   
-    // Lint then format TypeScript and JavaScript files
+    // This will lint and format TypeScript and
     '**/*.(ts|tsx|js)': (filenames) => [
       `yarn eslint --fix ${filenames.join(' ')}`,
       `yarn prettier --write ${filenames.join(' ')}`,
     ],
   
-    // Format MarkDown and JSON
+    // this will Format MarkDown and JSON
     '**/*.(md|json)': (filenames) =>
       `yarn prettier --write ${filenames.join(' ')}`,
   }
+  
