@@ -1,11 +1,10 @@
-import {  } from "@/config/api";
+import {} from "@/config/api";
 
 class ProductService {
-    async getAll(){
-       
+    async getAll() {
         return {
             // data : result
-        }
+        };
     }
 }
 

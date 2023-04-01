@@ -1,37 +1,37 @@
 enum Case {
-    modalAuth = "MODAL_AUTH"
-  }
-  
-  type State = {
-    modalAuth: boolean
-  }
-  
-  type Action = {
-    type: string,
-    payload?: any
-  }
+    modalAuth = "MODAL_AUTH",
+}
 
-  const initialState:State = {
-    modalAuth : false
-  }
+type State = {
+    modalAuth: boolean;
+};
 
-  const modalReducer = (state: State = initialState, action: Action) => {
+type Action = {
+    type: string;
+    payload?: any;
+};
+
+const initialState: State = {
+    modalAuth: false,
+};
+
+const modalReducer = (state: State = initialState, action: Action) => {
     switch (action.type) {
-      case Case.modalAuth:
-        if(!state.modalAuth){
-          return {
-            ...state,
-            modalAuth: true
-          }
-        }else{
-          return {
-            ...state,
-            modalAuth : false
-          }
-        }
-      default:
-        return state
+        case Case.modalAuth:
+            if (!state.modalAuth) {
+                return {
+                    ...state,
+                    modalAuth: true,
+                };
+            } else {
+                return {
+                    ...state,
+                    modalAuth: false,
+                };
+            }
+        default:
+            return state;
     }
-  }
-  
-  export default modalReducer;
+};
+
+export default modalReducer;

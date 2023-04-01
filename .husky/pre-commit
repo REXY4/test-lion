@@ -1,6 +1,9 @@
 #!/bin/sh
 
 
-echo "check lin"
+echo "run preetier"
+npm run prettier-format
+
+echo "run lin"
 
 npm run lint

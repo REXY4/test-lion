@@ -6,12 +6,11 @@ import modalReducer from "./modal";
 import productReducer from "./product";
 
 const rootReducers = combineReducers({
-    modal : modalReducer,
-    product : productReducer,
-    user : authReducer,
-    category : categoryReducer,
-    cart : cartReducer
+    modal: modalReducer,
+    product: productReducer,
+    user: authReducer,
+    category: categoryReducer,
+    cart: cartReducer,
 });
-
 
 export default rootReducers;
