@@ -1,0 +1,25 @@
+.paragraf-card{
+    font-size: 12px;
+}
+
+#button-variant{
+    width: 50px;
+    font-size: 8px;
+}
+
+.price-card{
+    font-size: 16px;
+    margin-top: 20px;
+    color : #DF2E38;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.image-card{
+    width: 20em;
+}
+
+.card-container{
+    position: relative;
+    bottom : 50px;
+}

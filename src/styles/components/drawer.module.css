@@ -1,0 +1,163 @@
+.background{
+    /* width : 40vh; */
+    animation-name: drawer-close;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+    min-height: 100%;
+    background-color: #FFFFFF;
+    /* position: absolute; */
+    left : 0;
+    box-shadow: 0 0 10px  rgb(0, 0, 0, 0.3);
+    /* z-index: 20; */
+}
+
+.container-button{
+    position: absolute;
+    z-index: 20;
+    margin-left: 40vh;
+}
+
+#button-burger{
+    background-color: #FFFFFF;
+    color : black;
+    border-radius: 0;
+    border-left: 0px;
+    width : 30px;
+    height: 30px;
+   
+}
+
+.active-drawer{
+    transform: translateX(50px);
+    animation-name: fade-right-animation;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.button-active{
+    animation-name: fade-right-animation;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+#button-burger:hover{
+    animation-name : close-button-drawer;
+    animation-duration: 0.1s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes close-button-drawer {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+.active{
+    animation-name: drawer-open;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes drawer-open {
+    from {
+        width: 0vh;
+        font-size: 0;
+    }
+    to {
+        width: 40vh;
+    }
+}
+
+@keyframes drawer-close {
+    from {
+        width: 40vh;
+    }
+    to {
+        width: 0vh;
+        display: none;
+    }
+}
+
+.ul{
+    list-style: none;
+    color : #151515;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.close-button{
+    animation-name: fade-left-animation;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+    display: none;
+}
+
+@keyframes fade-left-animation {
+    0% {
+      opacity: 0;
+      transform: translateX(-100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+.fade-right {
+    opacity: 0;
+    transform: translateX(50px);
+    animation-name: fade-right-animation;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes fade-right-animation {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+.li:hover{
+    animation-name : ul-hover;
+    animation-duration: 0.1s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards; 
+}
+
+.li-active{
+    animation-name : ul-hover;
+    animation-duration: 0.1s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards; 
+}
+
+@keyframes ul-hover {
+    from {
+        color : none;
+        transform: scale(1);
+    }
+    to {
+        color :red;
+        transform: scale(1.1);
+    }
+}
+
+.li{
+    margin-bottom: 10px;
+}

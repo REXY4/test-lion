@@ -1,0 +1,114 @@
+#button-auth-1{
+    margin-right: 0px;
+    background : none;
+    border : none;
+    color : #674188;
+}
+
+.badge{
+    position: absolute;
+    z-index: 5;
+    margin-left: 24px;
+}
+
+.icon-cart{
+    padding-right: 10px;
+    width: 25px;
+    height : 25px;
+}
+
+.icon-profile{
+    width: 25px;
+    height : 25px;
+    color : white;
+}
+
+.icon-profile:hover{
+    animation-name: button-profile-active;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes button-profile-active {
+    0% {
+    transform: rotateZ(0deg);
+  }
+  25% {
+    transform: rotateZ(10deg);
+  }
+  50% {
+    transform: rotateZ(0deg);
+  }
+  75% {
+    transform: rotateZ(-10deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+
+.profile-name{
+    font-size: 18px;
+    color : #FFFFFF;
+    padding-right: 10px;
+    padding-top : 10px;
+}
+
+.icon-humberger{
+    color: #FFFFFF;
+}
+
+
+#button-toggle-drawer:hover .icon-humberger{
+    color : #DF2E38;
+}
+
+
+.toggel-drawer{
+    position: relative;
+    right: 30px;
+}
+
+#button-auth-1:hover{
+    animation-name : button-login;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+#button-auth-2{
+    margin-right: 0px;
+    background : none;
+    border : none;
+    color : #674188;
+}
+
+
+#button1{
+    border-right: 2px solid white;
+}
+
+.button-container{
+    background-color: #F7EFE5;
+    border-radius: 20px;
+    padding : 8px;
+    cursor: pointer;
+}
+
+.button-container:hover{
+    animation-name: button-up;
+    animation-duration: 0.1s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+    box-shadow: 0 2px 1px rgb(0, 0, 0, 0.3);
+}
+
+@keyframes button-up {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
