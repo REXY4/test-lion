@@ -4,6 +4,7 @@ import { Card, Button, Image } from "react-bootstrap";
 import SelectBasic from "./SelectBasic";
 import { convertToRupiah } from "@/utils/convertRupiah";
 import { BsFillCartPlusFill } from "react-icons/bs";
+import { useRouter } from "next/router";
 
 interface Props {
     image: string;
@@ -35,6 +36,8 @@ const CardProduct: React.FC<Props> = ({
         variant[0] === undefined
             ? "-"
             : variant.filter((c: any) => c.id === variantId);
+
+    let router = useRouter();
     return (
         <div>
             <div>
@@ -89,7 +92,24 @@ const CardProduct: React.FC<Props> = ({
                             >
                                 <BsFillCartPlusFill />
                             </Button>
-                            <Button variant="danger">Buy</Button>
+                            <Button
+                                onClick={() => {
+                                    if (userId) {
+                                        router.push("/user/transaction");
+                                        addCart({
+                                            image,
+                                            name,
+                                            description,
+                                            variant: getVariant,
+                                            price,
+                                            userId,
+                                        });
+                                    }
+                                }}
+                                variant="danger"
+                            >
+                                Buy
+                            </Button>
                         </div>
                     </Card.Body>
                 </Card>

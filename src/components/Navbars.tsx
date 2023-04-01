@@ -32,7 +32,8 @@ const BasicNavbars: React.FC<Props> = ({ show, showDrawer }) => {
     let isLogin = store.getState().user.isLogin;
     let role = store.getState().user.user;
     let getCart = store.getState().cart.cart;
-    const cart = getCart && role && getCart.filter((c: any) => c.userId === role[0].id);
+    const cart =
+        getCart && role && getCart.filter((c: any) => c.userId === role[0].id);
 
     const handleOpenModalAuth = () => {
         dispatch({
@@ -41,6 +42,7 @@ const BasicNavbars: React.FC<Props> = ({ show, showDrawer }) => {
     };
 
     const handleLogout = () => {
+        router.push("/");
         dispatch({
             type: "LOGOUT",
         });
@@ -53,7 +55,6 @@ const BasicNavbars: React.FC<Props> = ({ show, showDrawer }) => {
             showDrawer(true);
         }
     };
-
 
     return (
         <Navbar
@@ -112,7 +113,7 @@ const BasicNavbars: React.FC<Props> = ({ show, showDrawer }) => {
                                     {cart.length}
                                 </Badge>
                             )}
-                            {role && role[0].role === "customers" &&
+                            {role && role[0].role === "customers" && (
                                 <NavDropdown
                                     style={{
                                         width: "300px",
@@ -124,11 +125,16 @@ const BasicNavbars: React.FC<Props> = ({ show, showDrawer }) => {
                                     }
                                     id="basic-nav-dropdown"
                                 >
-
                                     {cart &&
                                         cart.map((item: any) => {
                                             return (
-                                                <NavDropdown.Item onClick={() => router.push("/user/transaction")}>
+                                                <NavDropdown.Item
+                                                    onClick={() =>
+                                                        router.push(
+                                                            "/user/transaction"
+                                                        )
+                                                    }
+                                                >
                                                     <Images
                                                         src={item.image}
                                                         width={50}
@@ -136,12 +142,14 @@ const BasicNavbars: React.FC<Props> = ({ show, showDrawer }) => {
                                                     />{" "}
                                                     | {item.name} |{" "}
                                                     {item.variant[0].name} |{" "}
-                                                    {convertToRupiah(item.price)}
+                                                    {convertToRupiah(
+                                                        item.price
+                                                    )}
                                                 </NavDropdown.Item>
                                             );
                                         })}
                                 </NavDropdown>
-                            }
+                            )}
                         </div>
                     </Nav>
                     <Nav>
@@ -160,7 +168,7 @@ const BasicNavbars: React.FC<Props> = ({ show, showDrawer }) => {
                             </div>
                         ) : (
                             <div className="d-flex">
-                                {role && role[0].role === "customers" &&
+                                {role && role[0].role === "customers" && (
                                     <div>
                                         <Nav.Link
                                             onClick={() =>
@@ -170,7 +178,7 @@ const BasicNavbars: React.FC<Props> = ({ show, showDrawer }) => {
                                             Transaction
                                         </Nav.Link>
                                     </div>
-                                }
+                                )}
                                 <div>
                                     <h3 className={styles["profile-name"]}>
                                         {role && role[0].name}

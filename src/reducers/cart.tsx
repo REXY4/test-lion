@@ -1,6 +1,6 @@
 enum Case {
     addCart = "ADD_CART",
-    deleteCart = "DELETE_CART"
+    deleteCart = "DELETE_CART",
 }
 
 type State = {
@@ -27,10 +27,12 @@ const cartReducer = (state: State = initialState, action: Action) => {
                 cart: [...state.cart, { ...payload, id }],
             };
         case Case.deleteCart:
-            const updatedCart = state.cart.filter((cartItem: any) => cartItem.id !== payload);
+            const updatedCart = state.cart.filter(
+                (cartItem: any) => cartItem.id !== payload
+            );
             return {
                 ...state,
-                cart: updatedCart
+                cart: updatedCart,
             };
         default:
             return state;

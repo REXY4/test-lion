@@ -4,15 +4,16 @@ import { store } from "@/stores";
 
 interface PrivateRouteProps {
     allowedRoles: string[];
-    children: JSX.Element
+    children: JSX.Element;
 }
 
-const PrivateRoute: React.FC<PrivateRouteProps> = (
-    { allowedRoles, children }
-) => {
+const PrivateRoute: React.FC<PrivateRouteProps> = ({
+    allowedRoles,
+    children,
+}) => {
     const Router = useRouter();
     const { user, isLogin } = store.getState().user;
-    console.log("ini all", allowedRoles)
+    console.log("ini all", allowedRoles);
     useEffect(() => {
         if (!isLogin) {
             Router.push("/");

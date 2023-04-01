@@ -1,29 +1,29 @@
 import Drawer from "@/components/Drawer";
 import BasicNavbars from "@/components/Navbars";
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import TabbleData from "@/components/product/TabbleData";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { connect } from "react-redux";
-import { getAllProduct } from "@/actions/product";
+import { getAllCategory } from "@/actions/category";
+import TabbleCategory from "@/components/category/TabbleCategory";
 import PrivateRoute from "@/components/PrivateRoute";
-import { useRouter } from "next/router";
+import FormProduct from "@/components/product/FormProduct";
 
 interface State {
-    product: {
-        product: any;
+    category: {
+        category: any;
     };
 }
 
 interface Props {
-    product: State;
-    getAllProduct: any;
+    category: State;
+    getAllCategory: any;
 }
 
-const Home: React.FC<Props> = ({ product, getAllProduct }) => {
+const Home: React.FC<Props> = ({ category, getAllCategory }) => {
     const [show, setShow] = useState(true);
-    let router = useRouter();
+
     useEffect(() => {
-        getAllProduct();
+        getAllCategory();
     }, []);
 
     return (
@@ -40,22 +40,21 @@ const Home: React.FC<Props> = ({ product, getAllProduct }) => {
                         }}
                     >
                         <Row className="mb-5">
-                            <Col
-                                md={12}
-                                className="d-flex justify-content-between"
-                            >
-                                <h1>Product</h1>
-                                <Button
-                                    variant="outline-danger"
-                                    onClick={() =>
-                                        router.push("/admin/create/product")
-                                    }
-                                >
-                                    Create
-                                </Button>
+                            <Col md={12}>
+                                <h1>Create Product</h1>
                             </Col>
                             <Col md={12} className="mt-5">
-                                <TabbleData product={product} />
+                                <Card>
+                                    <Card.Body
+                                        className="justify-content-center"
+                                        style={{
+                                            paddingLeft: "100px",
+                                            paddingRight: "100px",
+                                        }}
+                                    >
+                                        <FormProduct />
+                                    </Card.Body>
+                                </Card>
                             </Col>
                         </Row>
                     </Container>
@@ -66,7 +65,7 @@ const Home: React.FC<Props> = ({ product, getAllProduct }) => {
 };
 
 const mapStateToProps = (state: State) => ({
-    product: state.product.product,
+    category: state.category.category,
 });
 
-export default connect(mapStateToProps, { getAllProduct })(Home);
+export default connect(mapStateToProps, { getAllCategory })(Home);
