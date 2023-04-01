@@ -5,6 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { getAllCategory } from "@/actions/category";
 import TabbleTransaction from "@/components/transaction/TabbleTransactions";
+import PrivateRoute from "@/components/PrivateRoute";
 
 interface State {
     category: {
@@ -25,7 +26,7 @@ const Home: React.FC<Props> = ({ category, getAllCategory }) => {
     }, []);
 
     return (
-        <>
+        <PrivateRoute allowedRoles={["admin"]}>
             <div>
                 <BasicNavbars show={show} showDrawer={setShow} />
                 <div className="d-flex">
@@ -52,7 +53,7 @@ const Home: React.FC<Props> = ({ category, getAllCategory }) => {
                     </Container>
                 </div>
             </div>
-        </>
+        </PrivateRoute>
     );
 };
 

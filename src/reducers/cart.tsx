@@ -1,5 +1,6 @@
 enum Case {
     addCart = "ADD_CART",
+    deleteCart = "DELETE_CART"
 }
 
 type State = {
@@ -20,9 +21,16 @@ const cartReducer = (state: State = initialState, action: Action) => {
     switch (type) {
         case Case.addCart:
             const id = state.cart.length + 1;
+            const uniqId = Date.now();
             return {
                 ...state,
                 cart: [...state.cart, { ...payload, id }],
+            };
+        case Case.deleteCart:
+            const updatedCart = state.cart.filter((cartItem: any) => cartItem.id !== payload);
+            return {
+                ...state,
+                cart: updatedCart
             };
         default:
             return state;

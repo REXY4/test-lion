@@ -1,27 +1,31 @@
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { store } from "@/stores";
 
 interface PrivateRouteProps {
     allowedRoles: string[];
+    children: JSX.Element
 }
 
-const PrivateRoute = (
-    WrappedComponent: React.FC,
-    { allowedRoles }: PrivateRouteProps
+const PrivateRoute: React.FC<PrivateRouteProps> = (
+    { allowedRoles, children }
 ) => {
     const Router = useRouter();
-    const state: any = store.getState().user;
-
+    const { user, isLogin } = store.getState().user;
+    console.log("ini all", allowedRoles)
     useEffect(() => {
-        const role = state.user.user.role;
-        const isLogin = state.user.islogin;
-        if (!isLogin || !allowedRoles.includes(role)) {
-            Router.replace("/");
+        if (!isLogin) {
+            Router.push("/");
+        } else if (!user || !allowedRoles.includes(user[0].role)) {
+            Router.push("/");
         }
-    }, []);
+    }, [user, isLogin, allowedRoles]);
 
-    return <WrappedComponent />;
+    if (!isLogin || !user || !allowedRoles.includes(user[0].role)) {
+        return null;
+    }
+
+    return children;
 };
 
 export default PrivateRoute;

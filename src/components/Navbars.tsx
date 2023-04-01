@@ -32,7 +32,7 @@ const BasicNavbars: React.FC<Props> = ({ show, showDrawer }) => {
     let isLogin = store.getState().user.isLogin;
     let role = store.getState().user.user;
     let getCart = store.getState().cart.cart;
-    const cart = getCart.filter((c: any) => c.userId === role[0].id);
+    const cart = getCart && role && getCart.filter((c: any) => c.userId === role[0].id);
 
     const handleOpenModalAuth = () => {
         dispatch({
@@ -54,7 +54,6 @@ const BasicNavbars: React.FC<Props> = ({ show, showDrawer }) => {
         }
     };
 
-    console.log(cart);
 
     return (
         <Navbar
@@ -108,38 +107,41 @@ const BasicNavbars: React.FC<Props> = ({ show, showDrawer }) => {
                             </>
                         )}
                         <div>
-                            {cart.length > 0 && (
+                            {cart && cart.length > 0 && (
                                 <Badge bg="primary" className={styles["badge"]}>
                                     {cart.length}
                                 </Badge>
                             )}
-                            <NavDropdown
-                                style={{
-                                    width: "300px",
-                                }}
-                                title={
-                                    <BsCart4
-                                        className={styles["icon-profile"]}
-                                    />
-                                }
-                                id="basic-nav-dropdown"
-                            >
-                                {cart &&
-                                    cart.map((item: any) => {
-                                        return (
-                                            <NavDropdown.Item href="#action/3.2">
-                                                <Images
-                                                    src={item.image}
-                                                    width={50}
-                                                    height={50}
-                                                />{" "}
-                                                | {item.name} |{" "}
-                                                {item.variant[0].name} |{" "}
-                                                {convertToRupiah(item.price)}
-                                            </NavDropdown.Item>
-                                        );
-                                    })}
-                            </NavDropdown>
+                            {role && role[0].role === "customers" &&
+                                <NavDropdown
+                                    style={{
+                                        width: "300px",
+                                    }}
+                                    title={
+                                        <BsCart4
+                                            className={styles["icon-profile"]}
+                                        />
+                                    }
+                                    id="basic-nav-dropdown"
+                                >
+
+                                    {cart &&
+                                        cart.map((item: any) => {
+                                            return (
+                                                <NavDropdown.Item onClick={() => router.push("/user/transaction")}>
+                                                    <Images
+                                                        src={item.image}
+                                                        width={50}
+                                                        height={50}
+                                                    />{" "}
+                                                    | {item.name} |{" "}
+                                                    {item.variant[0].name} |{" "}
+                                                    {convertToRupiah(item.price)}
+                                                </NavDropdown.Item>
+                                            );
+                                        })}
+                                </NavDropdown>
+                            }
                         </div>
                     </Nav>
                     <Nav>
@@ -158,15 +160,17 @@ const BasicNavbars: React.FC<Props> = ({ show, showDrawer }) => {
                             </div>
                         ) : (
                             <div className="d-flex">
-                                <div>
-                                    <Nav.Link
-                                        onClick={() =>
-                                            router.push(`/user/transaction`)
-                                        }
-                                    >
-                                        Transaction
-                                    </Nav.Link>
-                                </div>
+                                {role && role[0].role === "customers" &&
+                                    <div>
+                                        <Nav.Link
+                                            onClick={() =>
+                                                router.push(`/user/transaction`)
+                                            }
+                                        >
+                                            Transaction
+                                        </Nav.Link>
+                                    </div>
+                                }
                                 <div>
                                     <h3 className={styles["profile-name"]}>
                                         {role && role[0].name}
@@ -180,18 +184,9 @@ const BasicNavbars: React.FC<Props> = ({ show, showDrawer }) => {
                                     }
                                     id="basic-nav-dropdown"
                                 >
-                                    <NavDropdown.Item href="#action/3.1">
-                                        Action
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.2">
-                                        Another action
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.3">
-                                        Something
-                                    </NavDropdown.Item>
                                     <NavDropdown.Divider />
-                                    <NavDropdown.Item href="#action/3.4">
-                                        Separated link
+                                    <NavDropdown.Item onClick={handleLogout}>
+                                        Logout
                                     </NavDropdown.Item>
                                 </NavDropdown>
                             </div>

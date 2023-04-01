@@ -5,6 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import TabbleData from "@/components/product/TabbleData";
 import { connect } from "react-redux";
 import { getAllProduct } from "@/actions/product";
+import PrivateRoute from "@/components/PrivateRoute";
 
 interface State {
     product: {
@@ -25,7 +26,7 @@ const Home: React.FC<Props> = ({ product, getAllProduct }) => {
     }, []);
 
     return (
-        <>
+        <PrivateRoute allowedRoles={["admin"]} >
             <div>
                 <BasicNavbars show={show} showDrawer={setShow} />
                 <div className="d-flex">
@@ -48,7 +49,7 @@ const Home: React.FC<Props> = ({ product, getAllProduct }) => {
                     </Container>
                 </div>
             </div>
-        </>
+        </PrivateRoute>
     );
 };
 

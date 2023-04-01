@@ -1,0 +1,29 @@
+.container-image {
+    border-right: 1px solid rgb(0, 0, 0, 0.3);
+    padding-right: 20px;
+}
+
+.container-card {
+    border-bottom: 1px solid rgb(0, 0, 0, 0.3);
+}
+
+.container-header {
+    padding-left: 20px;
+}
+
+.image {
+    width: 100px;
+    height: 100px;
+}
+
+.name {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.name-product {
+    font-size: 16px;
+}
+
+.background-card-header {}

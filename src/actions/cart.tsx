@@ -10,4 +10,12 @@ const AddCart = (data: any) => async (dispatch: Dispatch) => {
     }
 };
 
-export { AddCart };
+const DeleteCart = (id: number) => async (dispatch: Dispatch) => {
+    try {
+        dispatch({ type: "DELETE_CART", payload: id });
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export { AddCart, DeleteCart };
