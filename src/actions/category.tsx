@@ -8,9 +8,27 @@ const getAllCategory = () => async (dispatch: Dispatch) => {
         dispatch({ type: "GET_ALL_CATEGORY", payload: response.data });
     } catch (err) {
         //cnsole
-        console.log(err);
+        // console.log(err);
     }
 };
+
+const getDetailCategory = (id:string, route:any) => async (dispatch: Dispatch) => {
+    try {
+        const category = new CategoryService();
+        const response = await category.getDetail(id);
+        console.log(response)
+        if(response.status === 200){
+            dispatch({ type:"GET_DETAIL_CATEGORY", payload: response.data });
+            route.push("/admin/update/category")
+        }
+    } catch (err) {
+        //cnsole
+        // console.log(err);
+    }
+};
+
+
+
 
 const createCategory = (data:any, router:any) => async (dispatch: Dispatch) => {
     try {
@@ -50,7 +68,7 @@ const createCategory = (data:any, router:any) => async (dispatch: Dispatch) => {
              })
 
               setTimeout(()=>{
-                router.push("/admin")
+                // router.push("/admin/update/category")
                 dispatch({
                  type : "OPEN_ALERT",
                   payload : {
@@ -63,13 +81,62 @@ const createCategory = (data:any, router:any) => async (dispatch: Dispatch) => {
     }
 };
 
-const DeteleCategory = (id:string) => async (dispatch:Dispatch) =>{
+
+const updateCategory = (data:any,id:string, router:any) => async (dispatch: Dispatch) => {
+    try {
+        const category = new CategoryService();
+        const response = await category.updateCategory(data, id);
+        if(response.status === 200){
+              dispatch({
+                type : "OPEN_ALERT",
+                payload : {
+                    status : true,
+                    var : "success",
+                    message : "Update Product Success"
+                }
+             })
+
+             setTimeout(()=>{
+                router.push("/admin/category")
+                dispatch({
+                 type : "OPEN_ALERT",
+                  payload : {
+                    status : false,
+                    var : "success",
+                    message : "Create Product Success"
+                }
+             })
+             },500)  
+        }
+    } catch (err) {
+        //cnsole
+          dispatch({
+                type : "OPEN_ALERT",
+                payload : {
+                    status : true,
+                    var : "danger",
+                    message : "create data fail"
+                }
+             })
+
+              setTimeout(()=>{
+                // router.push("/admin")
+                dispatch({
+                 type : "OPEN_ALERT",
+                  payload : {
+                    status : false,
+                    var : "success",
+                    message : "Create Product fail"
+                }
+             })
+             },500)  
+    }
+};
+const DeteleCategory = (id:string, reload:any) => async (dispatch:Dispatch) =>{
     try {
      const category = new CategoryService();
      const response = await category.deleteBy(id) 
-     console.log(response)
-      if(response.status === 201){
-        console.log("delete data success category")
+      if(response.status === 200){
               dispatch({
                 type : "OPEN_ALERT",
                 payload : {
@@ -78,6 +145,8 @@ const DeteleCategory = (id:string) => async (dispatch:Dispatch) =>{
                     message : "Delete Category Success"
                 }
              })
+            reload()
+
              setTimeout(()=>{
                 dispatch({
                  type : "OPEN_ALERT",
@@ -87,7 +156,7 @@ const DeteleCategory = (id:string) => async (dispatch:Dispatch) =>{
                     message : "Delete data success"
                 }
              })
-             },500)  
+             },1000)  
         }  
     } catch (error) {
         dispatch({
@@ -112,4 +181,4 @@ const DeteleCategory = (id:string) => async (dispatch:Dispatch) =>{
     }
 }
 
-export { getAllCategory, createCategory, DeteleCategory };
+export { getAllCategory, createCategory, DeteleCategory, getDetailCategory, updateCategory };

@@ -8,6 +8,13 @@ class CategoryService {
         return response;
     }
 
+    async getDetail(id:string) {
+        const response = await ApiCategory.get(
+            `${process.env.NEXT_PUBLIC_API_CATEGORY}/category/${id}`
+        );
+        return response;
+    }
+
     async create(data:any) {
         const config = {
             headers : {
@@ -20,6 +27,17 @@ class CategoryService {
         return response;
     }
 
+     async updateCategory(data:any, id:string) {
+        const config = {
+            headers : {
+                "Content-Type" : "application/json"
+            }
+        }
+        const response = await ApiCategory.put(
+            `${process.env.NEXT_PUBLIC_API_CATEGORY}/category/${id}`, {...data, active : true}, config
+        );
+        return response;
+    }
 
     async deleteBy(id:string) {
         const config = {
@@ -27,7 +45,7 @@ class CategoryService {
                 "Content-Type" : "application/json"
             }
         }
-        const response = await ApiCategory.post(
+        const response = await ApiCategory.delete(
             `${process.env.NEXT_PUBLIC_API_CATEGORY}/category/${id}`, 
         );
         return response;

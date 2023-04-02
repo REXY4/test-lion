@@ -3,26 +3,26 @@ import BasicNavbars from "@/components/Navbars";
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
-import { getAllCategory } from "@/actions/category";
+import { getAllTransaction } from "@/actions/transaction";
 import TabbleTransaction from "@/components/transaction/TabbleTransactions";
 import PrivateRoute from "@/components/PrivateRoute";
 
 interface State {
-    category: {
-        category: any;
+    transaction: {
+        transaction: any;
     };
 }
 
 interface Props {
-    category: State;
-    getAllCategory: any;
+    getAllTransaction :any
+    transaction: any;
 }
 
-const Home: React.FC<Props> = ({ category, getAllCategory }) => {
+const Transaction: React.FC<Props> = ({ transaction, getAllTransaction }) => {
     const [show, setShow] = useState(true);
-
+    console.log(transaction)
     useEffect(() => {
-        getAllCategory();
+        getAllTransaction();
     }, []);
 
     return (
@@ -47,7 +47,7 @@ const Home: React.FC<Props> = ({ category, getAllCategory }) => {
                                 <h1>Transaction</h1>
                             </Col>
                             <Col md={12} className="mt-5">
-                                <TabbleTransaction product={category} />
+                                <TabbleTransaction product={transaction} />
                             </Col>
                         </Row>
                     </Container>
@@ -58,7 +58,7 @@ const Home: React.FC<Props> = ({ category, getAllCategory }) => {
 };
 
 const mapStateToProps = (state: State) => ({
-    category: state.category.category,
+    transaction :state.transaction.transaction
 });
 
-export default connect(mapStateToProps, { getAllCategory })(Home);
+export default connect(mapStateToProps, { getAllTransaction })(Transaction);

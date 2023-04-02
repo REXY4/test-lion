@@ -4,6 +4,7 @@ import cartReducer from "./cart";
 import categoryReducer from "./category";
 import modalReducer from "./modal";
 import productReducer from "./product";
+import transactionReducer from "./transaction";
 
 const rootReducers = combineReducers({
     modal: modalReducer,
@@ -11,6 +12,7 @@ const rootReducers = combineReducers({
     user: authReducer,
     category: categoryReducer,
     cart: cartReducer,
+    transaction : transactionReducer
 });
 
 export default rootReducers;

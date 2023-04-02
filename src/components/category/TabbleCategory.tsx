@@ -1,24 +1,26 @@
-import { convertToRupiah } from "@/utils/convertRupiah";
-import React, { useState } from "react";
+import React, { useState, } from "react";
 import Table from "react-bootstrap/Table";
 import { Button } from "react-bootstrap";
 import {AiOutlineDelete} from "react-icons/ai"
 import PaginationBasic from "@/components/Pagination";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import {AiOutlineEdit} from "react-icons/ai"
+import { useRouter } from "next/router";
 
 interface Props {
     product: any;
     deleteData : any
     reload : any
+    getDetail : any
 }
 
-const TabbleCategory: React.FC<Props> = ({ product, deleteData, reload }) => {
+const TabbleCategory: React.FC<Props> = ({ product, deleteData, reload, getDetail }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [previousPage, setPreviousPage] = useState(8);
     const [page, setPage] = useState(1);
     const [search, setSearch] = useState("");
-
+    let router = useRouter();
     const handlePagination = (num: number) => {
         setPage(num + 1);
         setCurrentPage(num * 8);
@@ -77,13 +79,18 @@ const TabbleCategory: React.FC<Props> = ({ product, deleteData, reload }) => {
     };
 
     const handleDelete = (id:string) =>{
-        deleteData(id)
-        reload();
+        deleteData(id, reload)
     }
 
+    const handleDetail = (id:string) =>{
+        getDetail(id, router);
+    }
+
+  
     return (
         <div>
             <div>
+                
                 <InputGroup className="mb-3">
                     <Form.Control
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -123,8 +130,9 @@ const TabbleCategory: React.FC<Props> = ({ product, deleteData, reload }) => {
                                     <td>
                                         {item.active ? "active" : "non Active"}
                                     </td>
-                                    <td>
+                                    <td className="d-flex justify-content-evenly">
                                         <Button onClick={()=>handleDelete(item.id)} variant="danger"><AiOutlineDelete/></Button>
+                                        <Button onClick={()=>handleDetail(item.id)}><AiOutlineEdit/></Button>
                                     </td>
                                 </tr>
                             );

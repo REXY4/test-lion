@@ -80,7 +80,7 @@ const TabbleTransaction: React.FC<Props> = ({ product }) => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                             onChange(e)
                         }
-                        placeholder="insert :  category Name and active"
+                        placeholder="insert : transaction Name and status"
                         aria-label="Recipient's username"
                         aria-describedby="basic-addon2"
                     />
@@ -94,7 +94,10 @@ const TabbleTransaction: React.FC<Props> = ({ product }) => {
                     <tr>
                         <th>No</th>
                         <th>Name</th>
-                        <th>Active</th>
+                        <th>email</th>
+                        <th>Product</th>
+                        <th>price</th>
+                        <th>status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -103,17 +106,27 @@ const TabbleTransaction: React.FC<Props> = ({ product }) => {
                             fil.name
                                 .toLowerCase()
                                 .includes(search.toLowerCase())
+                                ||
+                            fil.email
+                                .toLowerCase()
+                                .includes(search.toLowerCase())      
                         )
                         .slice(currentPage, previousPage)
                         .map((item: any, i: number) => {
-                            console.log(item.active);
                             return (
                                 <tr>
                                     <td>{currentPage + 1 + i}</td>
                                     <td>{item.name}</td>
                                     <td>
-                                        {item.active ? "active" : "non Active"}
+                                        {item.email}
                                     </td>
+                                    <td>
+                                        {item.product_name}
+                                    </td>
+                                    <td>
+                                        {item.price}
+                                    </td>
+                                    <td>{item.status ? "Paid" : "Fail"}</td>
                                 </tr>
                             );
                         })}

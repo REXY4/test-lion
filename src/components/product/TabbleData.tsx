@@ -1,15 +1,22 @@
 import { convertToRupiah } from "@/utils/convertRupiah";
 import React, { useState } from "react";
+import { Button } from "react-bootstrap"; 
 import Table from "react-bootstrap/Table";
 import PaginationBasic from "@/components/Pagination";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import {AiOutlineEdit} from "react-icons/ai"
+import {AiOutlineDelete} from "react-icons/ai"
+import { useRouter } from "next/router";
 
 interface Props {
     product: any;
+    deleted : any
+    reload : any
+    detail : any
 }
 
-const TabbleData: React.FC<Props> = ({ product }) => {
+const TabbleData: React.FC<Props> = ({ product, deleted, reload, detail }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [previousPage, setPreviousPage] = useState(8);
     const [page, setPage] = useState(1);
@@ -72,6 +79,14 @@ const TabbleData: React.FC<Props> = ({ product }) => {
         setSearch(e.target.value);
     };
 
+    const handleDelete = (id:string) =>{
+        deleted(id, reload)
+    }
+    let router = useRouter();
+    const handleUpdate = (data:any) =>{
+        detail(data, router)
+    }
+
     return (
         <div>
             <div>
@@ -99,6 +114,7 @@ const TabbleData: React.FC<Props> = ({ product }) => {
                         <th>variant</th>
                         <th>Qty</th>
                         <th>price</th>
+                        <th>action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -171,6 +187,10 @@ const TabbleData: React.FC<Props> = ({ product }) => {
                                                       </>
                                                   );
                                               })}
+                                    </td>
+                                    <td className="d-flex justify-content-evenly">
+                                         <Button  variant="danger" onClick={()=>handleDelete(item.id)}><AiOutlineDelete/></Button>
+                                        <Button variant="success" onClick={()=>handleUpdate(item)}><AiOutlineEdit/></Button>
                                     </td>
                                 </tr>
                             );

@@ -5,7 +5,7 @@ import NavbarBasic from "@/components/Navbars";
 import { Col, Container, Row } from "react-bootstrap";
 import { connect } from "react-redux";
 import BasicModal from "@/components/ModalBasic";
-import { getAllProduct } from "@/actions/product";
+import { getAllProduct, getDetail } from "@/actions/product";
 import { AddCart } from "@/actions/cart";
 import { login } from "@/actions/auth";
 import CardProduct from "@/components/CardProduct";
@@ -35,6 +35,7 @@ interface Props {
     AddCart: any;
     user: any;
     cart: any;
+    getDetail : any
 }
 
 const Home: React.FC<Props> = ({

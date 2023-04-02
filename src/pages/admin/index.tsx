@@ -6,6 +6,7 @@ import TabbleData from "@/components/product/TabbleData";
 import { connect } from "react-redux";
 import { getAllProduct } from "@/actions/product";
 import PrivateRoute from "@/components/PrivateRoute";
+import { deleteProduct, getDetail } from "@/actions/product"; 
 import { useRouter } from "next/router";
 
 interface State {
@@ -17,9 +18,11 @@ interface State {
 interface Props {
     product: State;
     getAllProduct: any;
+    deleteProduct : any
+    getDetail : any
 }
 
-const Home: React.FC<Props> = ({ product, getAllProduct }) => {
+const Home: React.FC<Props> = ({ product, getAllProduct, deleteProduct, getDetail }) => {
     const [show, setShow] = useState(true);
     let router = useRouter();
     useEffect(() => {
@@ -55,7 +58,7 @@ const Home: React.FC<Props> = ({ product, getAllProduct }) => {
                                 </Button>
                             </Col>
                             <Col md={12} className="mt-5">
-                                <TabbleData product={product} />
+                                <TabbleData detail={getDetail} reload={getAllProduct} deleted={deleteProduct} product={product} />
                             </Col>
                         </Row>
                     </Container>
@@ -69,4 +72,4 @@ const mapStateToProps = (state: State) => ({
     product: state.product.product,
 });
 
-export default connect(mapStateToProps, { getAllProduct })(Home);
+export default connect(mapStateToProps, { getAllProduct, deleteProduct, getDetail })(Home);

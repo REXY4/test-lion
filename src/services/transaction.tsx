@@ -1,11 +1,11 @@
-import {} from "@/config/api";
+import {ApiTransaction} from "@/config/api";
 
-class ProductService {
+class TransactionService {
     async getAll() {
-        return {
-            // data : result
-        };
+        const url = process.env.NEXT_PUBLIC_API_TRANSACTION;
+        const response = await ApiTransaction.get("/transaction");
+        return response
     }
 }
 
-export default ProductService;
+export default TransactionService;
