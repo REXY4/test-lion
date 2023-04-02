@@ -13,7 +13,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
 }) => {
     const Router = useRouter();
     const { user, isLogin } = store.getState().user;
-    console.log("ini all", allowedRoles);
+
     useEffect(() => {
         if (!isLogin) {
             Router.push("/");

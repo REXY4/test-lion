@@ -5,7 +5,6 @@ const getAllProduct = () => async (dispatch: Dispatch) => {
     try {
         const product = new ProductService();
         const response = await product.getAll();
-        console.log("ini data",response.data)
         dispatch({ type: "GET_ALL_PRODUCT", payload: response.data });
     } catch (err) {
         //cnsole
@@ -40,7 +39,6 @@ const createProduct = (data:any, router:any) =>async (dispatch:Dispatch) =>{
              },500)  
         }
     }catch(err){
-        //
          dispatch({
                 type : "OPEN_ALERT",
                 payload : {

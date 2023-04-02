@@ -55,7 +55,14 @@ class ProductService {
                 "Content-Type" : "application/json"
             }
         }
-        const response = await ApiProduct.post("/product",data,config)
+        const response = await ApiProduct.post("/product",data.product,config)
+        const variant = data.variant.map(async(item:any)=>{
+           const responses = await ApiVariant.post(
+            `${process.env.NEXT_PUBLIC_API_VARIANT}/variant`, {...item.form, product_id : response.data.id}
+            );
+            return responses
+        })
+        await variant
         return response
     }
 }

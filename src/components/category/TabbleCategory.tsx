@@ -1,15 +1,19 @@
 import { convertToRupiah } from "@/utils/convertRupiah";
 import React, { useState } from "react";
 import Table from "react-bootstrap/Table";
+import { Button } from "react-bootstrap";
+import {AiOutlineDelete} from "react-icons/ai"
 import PaginationBasic from "@/components/Pagination";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 
 interface Props {
     product: any;
+    deleteData : any
+    reload : any
 }
 
-const TabbleCategory: React.FC<Props> = ({ product }) => {
+const TabbleCategory: React.FC<Props> = ({ product, deleteData, reload }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [previousPage, setPreviousPage] = useState(8);
     const [page, setPage] = useState(1);
@@ -72,6 +76,11 @@ const TabbleCategory: React.FC<Props> = ({ product }) => {
         setSearch(e.target.value);
     };
 
+    const handleDelete = (id:string) =>{
+        deleteData(id)
+        reload();
+    }
+
     return (
         <div>
             <div>
@@ -95,6 +104,7 @@ const TabbleCategory: React.FC<Props> = ({ product }) => {
                         <th>No</th>
                         <th>Name</th>
                         <th>Active</th>
+                        <th>#</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -106,13 +116,15 @@ const TabbleCategory: React.FC<Props> = ({ product }) => {
                         )
                         .slice(currentPage, previousPage)
                         .map((item: any, i: number) => {
-                            console.log(item.active);
                             return (
                                 <tr>
                                     <td>{currentPage + 1 + i}</td>
                                     <td>{item.name}</td>
                                     <td>
                                         {item.active ? "active" : "non Active"}
+                                    </td>
+                                    <td>
+                                        <Button onClick={()=>handleDelete(item.id)} variant="danger"><AiOutlineDelete/></Button>
                                     </td>
                                 </tr>
                             );

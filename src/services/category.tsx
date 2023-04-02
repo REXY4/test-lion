@@ -19,6 +19,19 @@ class CategoryService {
         );
         return response;
     }
+
+
+    async deleteBy(id:string) {
+        const config = {
+            headers : {
+                "Content-Type" : "application/json"
+            }
+        }
+        const response = await ApiCategory.post(
+            `${process.env.NEXT_PUBLIC_API_CATEGORY}/category/${id}`, 
+        );
+        return response;
+    }
 }
 
 export default CategoryService;

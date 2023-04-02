@@ -1,6 +1,7 @@
 enum Case {
     addCart = "ADD_CART",
     deleteCart = "DELETE_CART",
+    
 }
 
 type State = {

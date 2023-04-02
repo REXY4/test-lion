@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col , Button} from "react-bootstrap";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
-import { getAllCategory } from "@/actions/category";
+import { getAllCategory, DeteleCategory } from "@/actions/category";
 import TabbleCategory from "@/components/category/TabbleCategory";
 import PrivateRoute from "@/components/PrivateRoute";
 
@@ -17,9 +17,10 @@ interface State {
 interface Props {
     category: State;
     getAllCategory: any;
+    DeteleCategory :any
 }
 
-const Home: React.FC<Props> = ({ category, getAllCategory }) => {
+const Home: React.FC<Props> = ({ category, getAllCategory, DeteleCategory }) => {
     const [show, setShow] = useState(true);
     let router = useRouter();
     useEffect(() => {
@@ -52,7 +53,7 @@ const Home: React.FC<Props> = ({ category, getAllCategory }) => {
                                 </Button>
                             </Col>
                             <Col md={12} className="mt-5">
-                                <TabbleCategory product={category} />
+                                <TabbleCategory reload={getAllCategory} deleteData={DeteleCategory} product={category} />
                             </Col>
                         </Row>
                     </Container>
@@ -66,4 +67,4 @@ const mapStateToProps = (state: State) => ({
     category: state.category.category,
 });
 
-export default connect(mapStateToProps, { getAllCategory })(Home);
+export default connect(mapStateToProps, { getAllCategory, DeteleCategory })(Home);
