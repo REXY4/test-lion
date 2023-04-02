@@ -13,10 +13,10 @@ class ProductService {
             return {
                 ...item,
                 category: category.data.filter(
-                    (c: any) => parseInt(c.id) === item.product_category_id
+                    (c: any) => c.id === item.product_category_id
                 ),
                 variant: variant.data.filter(
-                    (c: any) => parseInt(item.id) === c.product_id
+                    (c: any) => item.id === c.product_id
                 ),
             };
         });
@@ -38,9 +38,7 @@ class ProductService {
             .map((item: any) => {
                 return {
                     ...item,
-                    category: category.data.filter(
-                        (c: any) => parseInt(c.id) === item.product_category_id
-                    ),
+                    category: category,
                     variant: variant.data.filter(
                         (c: any) => parseInt(item.id) === c.product_id
                     ),
@@ -49,6 +47,16 @@ class ProductService {
         return {
             data: result,
         };
+    }
+
+    async create(data:any){
+        const config = {
+            headers : {
+                "Content-Type" : "application/json"
+            }
+        }
+        const response = await ApiProduct.post("/product",data,config)
+        return response
     }
 }
 

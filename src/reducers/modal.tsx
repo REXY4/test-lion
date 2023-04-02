@@ -1,9 +1,11 @@
 enum Case {
     modalAuth = "MODAL_AUTH",
+    openAlert = "OPEN_ALERT"
 }
 
 type State = {
     modalAuth: boolean;
+    alert : any;
 };
 
 type Action = {
@@ -13,6 +15,11 @@ type Action = {
 
 const initialState: State = {
     modalAuth: false,
+    alert : {
+        status : false,
+        var : "",
+        message : ""
+    }
 };
 
 const modalReducer = (state: State = initialState, action: Action) => {
@@ -28,6 +35,22 @@ const modalReducer = (state: State = initialState, action: Action) => {
                     ...state,
                     modalAuth: false,
                 };
+            }
+        case Case.openAlert : 
+            if(state.alert){
+                return {
+                    ...state,
+                    alert : action.payload
+                }
+            }else {
+                return {
+                    ...state,
+                    alert : {
+                        status : false,
+                        var : "",
+                        message : ""
+                    }
+                }
             }
         default:
             return state;

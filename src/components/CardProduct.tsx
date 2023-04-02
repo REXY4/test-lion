@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from "react";
 import styles from "@/styles/components/card-product.module.css";
 import { Card, Button, Image } from "react-bootstrap";
@@ -38,12 +39,13 @@ const CardProduct: React.FC<Props> = ({
             : variant.filter((c: any) => c.id === variantId);
 
     let router = useRouter();
+    console.log("ini image", image)
     return (
         <div>
             <div>
                 <Image
                     src={image}
-                    alt="thumbnail"
+                    // alt="thumbnail"
                     className={styles["image-card"]}
                 />
             </div>

@@ -1,13 +1,13 @@
 import Drawer from "@/components/Drawer";
 import BasicNavbars from "@/components/Navbars";
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card , Button} from "react-bootstrap";
 import { connect } from "react-redux";
-import { getAllCategory } from "@/actions/category";
-import { createProduct } from "@/actions/product";
+import { getAllCategory, createCategory } from "@/actions/category";
 import PrivateRoute from "@/components/PrivateRoute";
 import FormProduct from "@/components/product/FormProduct";
 import AlertBasic from "@/components/AlertBasic";
+import FormCategory from "@/components/category/FormCategory";
 
 interface State {
     category: {
@@ -21,11 +21,11 @@ interface State {
 interface Props {
     category: State;
     getAllCategory: any;
-    createProduct : any;
     modal :any;
+    createCategory : any
 }
 
-const Home: React.FC<Props> = ({ category, getAllCategory, createProduct, modal }) => {
+const Category: React.FC<Props> = ({ category, getAllCategory, createCategory, modal }) => {
     const [show, setShow] = useState(true);
 
     useEffect(() => {
@@ -49,11 +49,10 @@ const Home: React.FC<Props> = ({ category, getAllCategory, createProduct, modal 
                         <Row className="mb-5">
                               {modal && modal.status && <AlertBasic vars={modal.var} message={modal.message}/>}
                             <Col md={12}>
-                                <h1>Create Product</h1>
+                                <h1>Create Category</h1>
                             </Col>
                             <Col md={12} className="mt-5">
                                 <Card>
-                                  
                                     <Card.Body
                                         className="justify-content-center"
                                         style={{
@@ -61,9 +60,9 @@ const Home: React.FC<Props> = ({ category, getAllCategory, createProduct, modal 
                                             paddingRight: "100px",
                                         }}
                                     >
-                                        <FormProduct 
+                                        <FormCategory
                                         modal={modal}
-                                        create={createProduct} 
+                                        create={createCategory} 
                                         category={category}
                                         />
                                     </Card.Body>
@@ -82,4 +81,4 @@ const mapStateToProps = (state: State) => ({
     modal : state.modal.alert
 });
 
-export default connect(mapStateToProps, { getAllCategory,createProduct })(Home);
+export default connect(mapStateToProps, { getAllCategory,createCategory })(Category);

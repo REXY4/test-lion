@@ -1,5 +1,6 @@
 enum Case {
     getAllCategory = "GET_ALL_CATEGORY",
+    addCategory =  "ADD_CATEGORY"
 }
 
 type State = {
@@ -23,6 +24,10 @@ const categoryReducer = (state: State = initialState, action: Action) => {
                 ...state,
                 category: payload,
             };
+          case Case.addCategory:
+            return {
+                ...state,
+            };    
         default:
             return state;
     }

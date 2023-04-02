@@ -1,8 +1,9 @@
 import Drawer from "@/components/Drawer";
 import BasicNavbars from "@/components/Navbars";
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col , Button} from "react-bootstrap";
 import { connect } from "react-redux";
+import { useRouter } from "next/router";
 import { getAllCategory } from "@/actions/category";
 import TabbleCategory from "@/components/category/TabbleCategory";
 import PrivateRoute from "@/components/PrivateRoute";
@@ -20,7 +21,7 @@ interface Props {
 
 const Home: React.FC<Props> = ({ category, getAllCategory }) => {
     const [show, setShow] = useState(true);
-
+    let router = useRouter();
     useEffect(() => {
         getAllCategory();
     }, []);
@@ -39,8 +40,16 @@ const Home: React.FC<Props> = ({ category, getAllCategory }) => {
                         }}
                     >
                         <Row className="mb-5">
-                            <Col md={12}>
+                            <Col md={12} className="d-flex justify-content-between">
                                 <h1>Category</h1>
+                                 <Button
+                                    variant="outline-danger"
+                                    onClick={() =>
+                                        router.push("/admin/create/category")
+                                    }
+                                >
+                                    Create
+                                </Button>
                             </Col>
                             <Col md={12} className="mt-5">
                                 <TabbleCategory product={category} />
