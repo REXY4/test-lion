@@ -1,5 +1,19 @@
 ## TEST LION SUPERINDO
 
+akun untuk login:
+
+```
+    email : admin@gmail.com
+    password : admin
+```
+
+user
+
+```
+    email : user@gmail.com
+    password : user
+```
+
 feature:
 
 1. admin page (master,category,product,transaction)
