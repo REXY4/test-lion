@@ -6,7 +6,7 @@ const AddCart = (data: any) => async (dispatch: Dispatch) => {
         dispatch({ type: "ADD_CART", payload: data });
     } catch (err) {
         //cnsole
-        console.log(err);
+        
     }
 };
 
@@ -14,7 +14,7 @@ const DeleteCart = (id: number) => async (dispatch: Dispatch) => {
     try {
         dispatch({ type: "DELETE_CART", payload: id });
     } catch (err) {
-        console.log(err);
+        // console.log(err);
     }
 };
 

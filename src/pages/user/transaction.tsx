@@ -40,6 +40,11 @@ const Home: React.FC<Props> = ({ cart, user, DeleteCart }) => {
         );
     };
 
+    const amount = checkout.map((item:any)=>item.price)
+    const total = amount.reduce((accumulator:any, currentValue:any) => {
+  return accumulator + parseInt(currentValue);
+}, 0);
+
     return (
         <PrivateRoute allowedRoles={["customers"]}>
             <div>
@@ -73,6 +78,7 @@ const Home: React.FC<Props> = ({ cart, user, DeleteCart }) => {
                                                 <Image
                                                     src={item.variant[0].image}
                                                     className={styles["image"]}
+                                                    alt="image"
                                                 />
                                             </div>
                                             <div
@@ -175,20 +181,7 @@ const Home: React.FC<Props> = ({ cart, user, DeleteCart }) => {
                                         <div className=" mt-4">
                                             <p>
                                                 <strong>Total</strong> : Rp{" "}
-                                                {checkout
-                                                    .map((item: any) =>
-                                                        Idr(item.price)
-                                                    )
-                                                    .reduce(function (
-                                                        sum: number,
-                                                        elemen: number
-                                                    ) {
-                                                        let result =
-                                                            sum + elemen;
-                                                        return result;
-                                                    },
-                                                    0)
-                                                    .toLocaleString()}
+                                                {total.toLocaleString()}
                                             </p>
                                             <div className="d-flex justify-content-center">
                                                 <Button variant="success">

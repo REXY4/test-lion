@@ -39,7 +39,7 @@ const CardProduct: React.FC<Props> = ({
             : variant.filter((c: any) => c.id === variantId);
 
     let router = useRouter();
-    console.log("ini image", image)
+    // console.log("ini image", image)
     return (
         <div>
             <div>

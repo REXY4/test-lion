@@ -9,14 +9,13 @@ const login = (data: any, router: any) => async (dispatch: Dispatch) => {
             type: "LOGIN",
             payload: response,
         });
-        console.log(response[0].role);
+     
         if (response[0].role === "admin") {
-            console.log("test admin");
+            // console.log("test admin");
             router.push("admin");
         }
     } catch (error) {
         if (String(error) === "Error: User not found") {
-            console.log("user not found");
         }
     }
 };

@@ -16,7 +16,6 @@ const getDetailCategory = (id:string, route:any) => async (dispatch: Dispatch) =
     try {
         const category = new CategoryService();
         const response = await category.getDetail(id);
-        console.log(response)
         if(response.status === 200){
             dispatch({ type:"GET_DETAIL_CATEGORY", payload: response.data });
             route.push("/admin/update/category")

@@ -8,7 +8,7 @@ const getAllProduct = () => async (dispatch: Dispatch) => {
         dispatch({ type: "GET_ALL_PRODUCT", payload: response.data });
     } catch (err) {
         //cnsole
-        console.log(err);
+        // console.log(err);
     }
 };
 
@@ -18,7 +18,7 @@ const getDetail = (data:any, router:any) => async (dispatch: Dispatch) => {
         router.push("/admin/update/product")
     } catch (err) {
         //cnsole
-        console.log(err);
+        // console.log(err);
     }
 };
 
