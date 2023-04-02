@@ -1,5 +1,10 @@
 ## TEST LION SUPERINDO
 
+sebelum menginstall ubah .env-example dengan .env.local
+```
+    cp .env-example .env.local
+```
+
 akun untuk login:
 
 ```
