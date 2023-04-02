@@ -26,10 +26,6 @@ const Drawer: React.FC<Props> = ({ show, setShow, active }) => {
             name: "Transaction",
             link: "/admin/transaction",
         },
-        //  {
-        //     name : "Master",
-        //     link : ""
-        // },
     ];
 
     return (

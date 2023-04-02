@@ -7,7 +7,6 @@ interface Props {
     create : any
     category : any
     modal :any
-    type : string
 }
 
 

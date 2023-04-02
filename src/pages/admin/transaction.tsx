@@ -20,7 +20,6 @@ interface Props {
 
 const Transaction: React.FC<Props> = ({ transaction, getAllTransaction }) => {
     const [show, setShow] = useState(true);
-    console.log(transaction)
     useEffect(() => {
         getAllTransaction();
     }, []);
